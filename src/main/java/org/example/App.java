@@ -2,15 +2,15 @@ package org.example;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
-        Tarjeta tarjetaVisa = TarjetaFactory.crearTarjeta(TarjetaTipo.VISA, 123456, "John", "Doe", new Date(2025, Calendar.APRIL,9));
-        Tarjeta tarjetaAmex = TarjetaFactory.crearTarjeta(TarjetaTipo.AMEX, 159357, "John", "Doe", new Date(2027, Calendar.NOVEMBER,21));
-        Tarjeta tarjetaNara = TarjetaFactory.crearTarjeta(TarjetaTipo.NARA, 951753, "John", "Doe", new Date(2021, Calendar.APRIL,28));
+        Tarjeta tarjetaVisa = TarjetaFactory.crearTarjeta(TarjetaTipo.VISA, 123456, "John", "Doe", new GregorianCalendar(2025, Calendar.APRIL,9).getTime());
+        Tarjeta tarjetaAmex = TarjetaFactory.crearTarjeta(TarjetaTipo.AMEX, 159357, "John", "Doe", new GregorianCalendar(2027, Calendar.NOVEMBER,21).getTime());
+        Tarjeta tarjetaNara = TarjetaFactory.crearTarjeta(TarjetaTipo.NARA, 951753, "John", "Doe", new GregorianCalendar(2021, Calendar.APRIL, 28).getTime());
         System.out.println(tarjetaVisa);
         if (tarjetaVisa.operacionValida(5895)){
             System.out.println("Operacion valida");

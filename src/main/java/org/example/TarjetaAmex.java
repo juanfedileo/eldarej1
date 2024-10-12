@@ -10,16 +10,19 @@ public class TarjetaAmex extends Tarjeta{
 
     @Override
     public String operacion(int mount) {
-        if (operacionValida(mount)){
-            StringBuilder sb = new StringBuilder();
-            sb.append("Marca: Amex ");
-            sb.append("Tasa: ");
-            Date hoy = new Date();
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(hoy);
-            sb.append(mount*(calendar.get(Calendar.MONTH)+1)*0.1);
-            return sb.toString();
+        if (!operacionValida(mount)) {
+            throw new InvalidOperationException("Importe no valido");
         }
-        return "Monto invalido";
+        if (!esValida()) {
+            throw new InvalidCardException("Tarjeta vencida");
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("Marca: Amex ");
+        sb.append("Tasa: ");
+        Date hoy = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(hoy);
+        sb.append(mount*(calendar.get(Calendar.MONTH)+1)*0.1);
+        return sb.toString();
     }
 }
